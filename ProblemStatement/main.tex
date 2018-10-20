@@ -1,0 +1,128 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2345678901234567890123456789012345678901234567890123456789012345678901234567890
+%        1         2         3         4         5         6         7         8
+
+
+\documentclass{IEEEtran}  % Comment this line out
+                                                          % if you need a4paper
+%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4
+                                                          % paper
+                                                          
+% The following packages can be found on http:\\www.ctan.org
+\usepackage{graphicx} % for pdf, bitmapped graphics files
+\usepackage{lscape}
+\usepackage{bm}
+\newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}
+%\usepackage{epsfig} % for postscript graphics files
+%\usepackage{mathptmx} % assumes new font selection scheme installed
+%\usepackage{times} % assumes new font selection scheme installed
+%\usepackage{amsmath} % assumes amsmath package installed
+%\usepackage{amssymb}  % assumes amsmath package installed
+
+\title{\LARGE \bf
+CS 461 - NASA USLI Problem Statement
+}
+
+\author{Donald "Trey" Elkins, Ryan Wallerius, Leif Tsang
+}
+
+\begin{document}
+\maketitle
+\pagestyle{plain}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+        Every year, NASA holds a competition known as the ’University Student Launch Initiative’ in which universities from around
+the country field multidisciplinary teams that design, build, manufacture, and fly proprietary rocket systems with scientifically
+useful payloads. Competing teams are required to adhere to NASA specs and guidelines as well as document their engineering
+processes; teams are scored and ranked by NASA based on performance, safety, and documentation. This is Oregon State
+University’s second year fielding a team for the USLI competition. Development begins in August with the mechanical
+engineering capstone team’s formation and ends in April with the final launch in Huntsville, Alabama
+\end{abstract}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Problem}
+\noindent
+The Computer Science team has three primary technical responsibilities: 
+\begin{enumerate}
+    \item We must create and  maintain a web/social media presence that will display team progress, achievements as well as a place to give NASA a central location to retrieve technical documents. This is because the documents are too large to send over email.  
+    \item Ensure that the launch vehicle has a functioning  avionics and telemetry system capable of monitoring position, producing valid flight data, transmitting data back to a ground station, and potentially plotting and analyzing said data.
+    \item Program an autonomous rover system that can move, avoid objects, and collect a soil sample from indeterminate environmental conditions. 
+\end{enumerate}
+These problems will take months to complete but it must be done to the best of our ability. This project is in conjunction with other sub-teams. These include Electrical Engineers and Mechanical Engineers. We all have the same goal but we have to work together and be patient with one another. Each sub team has deadlines to meet as well as certain requirements they must meet to have the vehicle ready for final launch.   
+
+\section{Proposed Solutions}
+\noindent  Each of the above technical responsibilities presents an
+individual project (or sub-project, if you want to be pedantic)
+with its own challenges and responsibilities. CS Capstone
+members will be assigned to the various projects based on
+their individual skills and interests, and USLI volunteers will
+augment each of the projects’ resources to make attaining
+deliverable goals more reasonable.
+\newline
+\\For the web presence, we’ll be creating a new website
+from scratch using some sort of framework (most likely JS
+React) and modelling it after websites from previous years.
+The website is not a direct competition requirement this year,
+but the OSU team lost significant points because of under-design
+and a lack of accessible technical information. Our
+goal is to make the website flashy and easy to interact with.
+It also needs to house documents that can be retrieved by
+NASA to satisfy competition requirements. Web hosting will
+also be a significant hurdle, though we’ve already secured a
+domain for the new site.
+\newline
+\\The groundwork for avionics and telemetry systems was
+laid by last year’s electrical engineers in the creation of a
+proprietary avionics system and ground station. Working with
+an existing system will be considerably easier than starting
+from scratch, but the existing system requires significant
+code re-factoring and documentation improvements to be
+workable and understandable by other team members and/or
+subsequent teams. The avionics system is largely written in
+C and C++, so we’ll focus on cleaning up and improving
+the code while the electrical team focuses on hardware fixes.
+In addition, we’d also like to add further RF functionality
+and data logging capabilities that will require significant
+expansions on the code base and could potentially pose a
+serious programming challenge in the areas of networking
+and data analysis.
+\newline
+\\This year’s scientific payload is an autonomous rover that
+collects a soil sample from an environment with undetermined
+environmental conditions. The mechanical team has
+already created a test bed and is working on a soil collection
+system, but the CS team is responsible for programming the
+primary control and operation code for the robot, as well
+as the autonomous driving and object detection modules.
+We will be working with the ECE team closely for this
+specific project. The goal will be to establish hard-coded
+subroutines for basic rover operation and then move on to
+fully autonomous operation after ejection from the launch
+vehicle.
+\newline
+\\All of the documents submitted must be in latex. We will be having a a team work on formatting all of the documents and make sure they are professional and presentable. 
+\newline
+\\To accomplish these ends, we will be holding or attending
+weekly meetings with our capstone TA, the entire OSU USLI
+team, our capstone team itself, and with any volunteers who
+may be working on projects with us. A significant part of this project will involve
+team coordination, communication, and managing time and
+personnel resources.
+
+\section{Performance Metrics}
+\noindent We'd like to see the following tentative performance metrics met by the end of April 2019:
+\begin{itemize}
+    \item Team website capable of holding disseminating documents for NASA. This will be determined by the team lead Trevor Rose.
+    \item Avionics code deemed suitably clean and efficient by original author and outside parties
+    \item Avionics system capable of valid data collection, logging, plotting, and potentially generating files.
+    \item Rover able to move 10 feet away from launch vehicle autonomously (with object detection) and collect a soil sample using the mechanical and electrical systems designed by the other teams.
+    \item Documentation completed and organized in a way that outside parties, NASA, and other team members deem it comprehensible and comprehensive.
+    \item Minimum loss of competition points on any system that we’re involved in; the higher we place at the competition, the more successful we were.
+\end{itemize}
+
+\section{Conclusion}
+\noindent The CS capstone team will be responsible for the avionics (telemetry) software, the rover software and the team website. These systems will play a critical role in the successfulness of the launch of the vehicle. To have a successful launch and place well in the competition our work has to be high quality. We'll have to work smart and work hard to meet our goals by April
+
+\end{document}
