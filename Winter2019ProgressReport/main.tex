@@ -1,0 +1,119 @@
+\documentclass[journal,10pt,draftclsnofoot,onecolumn,compsoc]{IEEEtran} \usepackage[margin=0.75in]{geometry} 
+\usepackage[utf8]{inputenc}
+\usepackage{pdflscape}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{titling}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\usepackage{longtable}
+\graphicspath{ {./Figures/} }
+
+\title{CS Capstone Team 12 - Winter Progress Report}
+\author{Donald "Trey" Elkins, Leif Tsang, Ryan Wallerius}
+\date{March 2019} 
+
+\begin{document}
+
+\begin{titlingpage}
+
+\maketitle
+\begin{center}
+
+\includegraphics[scale = 0.25]{FinalPatch.png}\\[1.0 cm]
+\end{center}
+\begin{abstract}
+The purpose of this document is to report Team 12's Winter Term 2019 progress on the software portion of OSU's entry into the 2019 NASA University Student Launch Initiative. This document recaps project goals and objectives, describes the current state of progress, enumerates problems and solutions, and describes remaining project work.
+\end{abstract}
+\end{titlingpage}
+
+\section{Recap}
+Every year, NASA coordinates the University Student Launch Initiative competition - a contest in which teams of university students design, build, integrate, and fly a payload-bearing single stage solid-motor rocket to an altitude of about one mile. The rocket utilizes an active tracking RF system for recovery and upon landing deploys a robotic rover that collects and retains a soil sample under indeterminate environmental conditions. \newline
+
+\noindent CS Capstone Team 12 is responsible for development on the active tracking avionics system, the robotic payload, and the team website from which NASA can download technical documents. We are attempting to overhaul the avionics code and add a new transmission frequency band, program a functional rover with computer vision and object avoidance, and either heavily modify or replace the current team website. Fulfillment of team objectives is based on quality of the team's competition entry and performance in the April 2019 final launch.
+
+\section{Current Progress}
+
+\subsection{Payload}
+
+The payload has been progressing by leaps and bounds this last 2-3 weeks. While planning out the rover and working directly with the team of mechanical and electrical engineers, the payload to be programmed and tested has finally reached the software implementation stage aside from a PCB that still needs to be assembled to add a GPS and Radio Frequency module. Currently testing is being performed using a compact protoboard that is missing both the GPS and the RF modules. As soon as those parts are installed, we will be able to implement and test phase 2 of our rover along with finishing up phase 1. We are planning on using multi-threading with the Teensy for object avoidance using a library made by the Teensy community. 
+
+\subsubsection {Unique Mission Success Criteria}
+
+In order for the rover to successfully complete the mission, it must be set up with a complete set of instructions on what to do after deployment on the mission:
+
+\begin{enumerate}
+    \item The rover must reliably move outside the launch vehicle’s proximity without becoming stuck. 
+    \item Soil must then be collected and sealed inside a container on the rover. 
+    \item A radio signal containing the location of the base station and the number of samples to be collected will be received by the rover. 
+    \item The rover must travel in the direction of the coordinates given until the target is in range and detected via computer vision.
+    \item The rover will use the combined functionality of the Beaglebone and the Teensy in order to handle docking of the rover and deposit the sample into a collection chamber for analysis.
+    \item If another sample is required the rover will exit the station and set out to retrieve another soil sample from a different location. 
+    \item X sufficiently sized samples will be recovered and delivered, where X is the number of samples to collect based on a signal sent from the base station. 
+\end{enumerate}
+
+
+\subsubsection{ Control Code (Teensy)}
+
+The Teensy is the main controller for the rover. This will control the phases of the rover and make logical decisions based on information feedback from the peripheral sensors. The Teensy will be executing two main loops that are split into phases 1 and 2. Phase 1 is designed to disengage the rover away from the launch vehicle by moving away from GPS coordinates transmitted by the launch vehicle. Object avoidance is active during this process in order to safely guide the rover. Phase 1 has been implemented on the rover. Due to delays in rover fabrication and PCB manufacturing phase 2 is still under development. As soon as the PCB is completed,  the sensors required to complete Phase 2 will be obtained. Phase 2 begins with a sequence of commands that operate an auger motor. This opens and closes the containment box lids for storing the sample. After the first collection, the rover waits until it receives a GPS coordinate to deliver the soil sample to. The Teensy has a magnetometer which combined with the GPS coordinates will allow the rover find the scientific base station. Once found, the computer vision and the sonar will provide the Teensy with enough information to successfully dock and release the soil sample. The rover will then continue harvesting the indicated number of soil samples following the same procedure. 
+
+\subsubsection {Computer Vision (BeagleBone)}
+
+Computer Vision is implemented on a BeagleBone Black Wireless. An LG920 camera is connected to the BeagleBone via USB in order to capture frames to process and send instructions. OpenCV is used to process each frame for circles and reports the center point into a single instruction. This is piped over UART1 into the Teensy to execute in an open loop docking process. The BeagleBone is able to process an average of 0.33 frames per second and a single instruction is given for each processed frame. In order to correct the slow frame rate of the BeagleBone, only 1 of every 5 frames are processed. This helps reduce the buffer lag from the camera and keeps our measurements more precise. 
+
+
+\subsection{Avionics}
+Several code refactors of both the ground station and flight unit avionics code have been successfully tested and deployed, with another refactor currently underway. The original version of the flight unit code was 600 lines long; the most recent revision is just over 200 lines. Additional work has been done on the ground station GUI, file I/O, data logging for drift analysis, and the payload integration controller (PLEC). As there is no software or electrical team for the PLEC, the avionics software group has been drafted to ensure that it works in order to meet competition requirements. \newline
+
+\noindent Various performance tests have been performed with the 900 MHz avionics system to ensure that it satisfies competition requirements. We have been able to achieve reliable transmission up to 0.6 miles. A new custom PCB was drafted and created by electrical engineering volunteers and has been assembled and proven to be functional. It utilizes very similar hardware but has a new GPS chip (which required software debugging) and electrical support for both 900 MHz and 433 MHz transceivers.\newline
+
+\noindent A functional prototype of the 433 MHz band has been created using CC 1101 breakout boards rather than the actual CC 1200s, though the devices are highly analogous and we've determined that the prototype is an acceptable stand in for code, performance, and competition testing purposes. The system uses a library by an ELECHOUSE software engineer for the CC 1101 which we will be heavily modifying after submission of the current NASA document to work with the CC 1200 system. \newline
+
+\noindent We are confident that by competition the 900 MHz system will be significantly more documented, user friendly, and effective than it was at the start of the year. At a bare minimum, the 433 MHz system will be ready to be handed off to next year's USLI team, though the goal is to have it functional for competition.
+
+\subsection{Website}
+The website is currently being built using ReactJS Technology. The old team website was built off primarily HTML/CSS and some Javascript. The team wanted a more modern, well designed website. Because React has more functionality to it and is somewhat of a newer language there is a learning curve to it. This term has been spent learning the language and transitioning into development. A team volunteer for the OSU USLI team created a side navigation bar and provided the skeleton code for the website. Currently back end page routing, the About Us and Deliverables section have skeleton code done. \newline
+
+\noindent The About Us section is currently programmed to have a virtualized React table. This means that the table is able to handle any amount of data. This gives us more functionality when compared to HTML. The reason why this section is not fully complete is the styling needs to be finished. We may also switch this page up to include head-shots with each team member's name underneath. This is still being discussed. \newline
+
+\noindent The Deliverables section is programmed to be a grid of buttons. Once clicked, the user will be able to download the document they clicked on. This is the most important functionality of the teams website. The documents that the OSU USLI team submits are too large to be sent over Email. NASA must go to our team website and download them to be graded. We are currently using the old HTML website to submit the required documents for the competition until the new website is able to be launched. 
+
+
+\section{Remaining Objectives}
+\subsection{Payload}
+
+In order to complete the objectives listed earlier there are many tasks that still need to be completed. First and foremost, we need to implement multi-threading on our Teensy in order to have reliable object avoidance. While the Teensy does not have an official library to use multi-threading we found a community made library to implement multi-threading. This will allow us to detect objects to avoid while the main program is able to run quickly. As mentioned above, we are still waiting on our PCB that will allow us to use GPS and RF. This is a large portion of our navigation for the rover. Without these components, we will not be able to provide the rover with coordinates to travel to. Phase 2 heavily uses these features, so the development of phase 2 has been postponed. 
+
+\subsection{Avionics}
+A majority of the remaining 900 MHz work is simply refactoring and changes to the GUI to improve clarity and usefulness of data. Addition of an ejection button to the 900 MHz GUI for PLEC operation is the single biggest change that must be made, as well as making sure that the 900 MHz hardware plays nicely with the new electrical system. We would also like to perform more range testing to ensure transmission performance and complete some further documentation to make any necessary development easier for next year's team. We would also like to help the payload ejection team with any necessary software work that must be done to get the PLEC fully functional for competition, as they have no software resources to tap into currently. \newline
+
+\noindent The bulk of remaining objectives falls into the 433 MHz category. The system currently has a functional prototype using analogous transceiver hardware, but significant work needs to be done all around in this last stretch before competition. The CC 1101 library must be rewritten (with the help of Texas Instruments's SmartRF software) to work with the CC 1200 hardware, the prototype must be tested with a functional GPS unit, the old 900 MHz code for both the ground station and flight units needs to be refitted for the new transmission band, and testing to ensure compliance with competition requirements must be performed. The goal is to have a working, documented system with core functionality online and usable by early April. 
+
+\subsection{Website}
+There is still quite a bit of work to be done for the website. Below is a list of what needs to be accomplished:
+\begin{itemize}
+    \item Functionality to Home, Outreach, Sponsors and Archive Sections
+    \item Potentially getting head-shots and making changes to the About Us Page
+    \item Finalize transition of Old Website and have the new one go online
+\end{itemize}
+
+\noindent The Home page will require the most work out of the remaining pages. The goal is to provide some information for anyone new to what the USLI competition is. The team also wants to have 3D image renderings of the team rocket and payload. We have tried to implement the 3D widgets but with little success. The sponsors page will be structured to show off the images of our sponsors and give thanks for their contributions. The archive will present documents from last year's competition entry. 
+
+\section{Problems \& Solutions}
+
+\subsection{Payload}
+
+The main issue that payload software has run into is the low processing speed of the BeagleBone. OpenCV is a very heavy library that requires fast processing speeds in order to achieve a high frame rate. Since we do not have a high frame rate, we need to skip frames in order to process relevant information. The major limiting factor in the payload has been with the hardware. Since the PCB has not been assembled for the rover, testing is not possible. Soon the PCB will be built and we can continue the development of phase 2. 
+
+\subsection{Avionics}
+The two biggest constraints for this project so far have been time and hardware resources. It turns out that a huge part of taking on the avionics portion of this project is in the management and operation of the avionics system itself. At least half of the time put into avionics on this project has solely been for documentation, maintenance, and analysis of the physical system and the data that it generates. This is a critical undertaking necessary for the overall performance of the launch and our team's performance in the competition, but it has definitely made development time into a precious commodity that must be managed effectively. The difficulties this presents have largely been alleviated by excellent support from last year's avionics software engineer, volunteers that have stuck with the project for months and performed a majority of the hardware development work, team electrical engineers with a knowledge of embedded microcontroller code, and other gracious team members who have been willing to take on management and operations tasks when necessary. For this avionics system it really does take a village. \newline
+
+\noindent Hardware resources have largely been the limiting developmental factor from a software side. We have been unable to find any breakout boards for the Texas Instruments CC 1200 RF transceiver, and as a result have been prototyping and testing using a breakout board for the TI CC 1101 which is analogous enough that once it's fully functional we should be able to port the code over to the CC 1200 system with relative ease. The recent arrival and assembly of the new avionics PCBs should make it possible to start doing 'real' development on the CC 1200 system and get it working in practice rather than just using the prototype. Hardware swapping, part scarcity, and changes in ICs have also made consistent development difficult at times, but the team of volunteer electrical engineers on the avionics system have made the entire endeavor possible. We should be able to have functioning 433 MHz hardware before the competition in early April. 
+
+\subsection{Website}
+The biggest problem for the website has been making significant progress. React is a new language for me and has a big learning curve. Time has been spent using resources to learn the language. However implementing ideas and putting it on screen has been difficult. I need to take it one step at a time and not overwhelm myself with tasks. Progress has been made but at a very slow rate. That being said, there are numerous resources on the Internet to help with the implementation of the new website, and we have a volunteer that has been extremely helpful throughout the process. 
+
+\section{Conclusion}
+Significant progress has been made on shoring up the existing systems; we have made strides in adding functionality, improving existing features, and documenting the engineering processes involved. We have also made significant progress in introducing new functional systems in the various spheres of the software development side of the project including the new rover, new website, and new transmission band for the avionics system. The USLI competition starts on April 3rd, and we are well on our way to launching our systems out in Huntsville. We will continue to forge forward on our project goals and document our progress accordingly. With continued organization and dedication we will succeed.
+
+\end{document}
