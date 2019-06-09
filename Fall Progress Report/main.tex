@@ -1,0 +1,77 @@
+\documentclass[journal,10pt,draftclsnofoot,onecolumn,compsoc]{IEEEtran} \usepackage[margin=0.75in]{geometry} 
+\usepackage[utf8]{inputenc}
+\usepackage{pdflscape}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{titling}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\usepackage{longtable}
+\graphicspath{ {./Figures/} }
+
+\title{CS Capstone Team 12 - Fall Progress Report}
+\author{Donald "Trey" Elkins, Leif Tsang, Ryan Wallerius}
+\date{December 2018} 
+
+\begin{document}
+
+\begin{titlingpage}
+
+\maketitle
+\begin{center}
+
+\includegraphics[scale = 0.5]{osu_usli_logo.png}\\[1.0 cm]
+\end{center}
+\begin{abstract}
+The purpose of this document is to report on this term's (fall 2018) progress on the software portion of Oregon State University's entry into the 2019 NASA University Student Launch Initiative Competition. This document recaps the project goals and objectives, describes the current state of progress on the project, summarizes weekly progress and activities, and concludes with a retrospective on the past 10 weeks of development for the various subsystems. 
+\end{abstract}
+\end{titlingpage}
+
+\section{Recap}
+Every year, NASA holds the University Student Launch Initiative Competition in which collegiate teams design, build, and fly a payload-bearing single stage solid-propellant rocket to an altitude of about one mile. The rocket must then return to the Earth and deploy its (typically robotic) payload which will then perform an objective conforming to the mission profile. Competition entries are scored based on adherence to NASA safety and documentation requirements, as well as the actual operational performance of both the rocket and payload systems. \newline
+
+\noindent CS Capstone Team 12's objective this year is to implement, maintain, and operate the computational systems necessary for the successful performance of the rocket and payload systems. Additionally, the team is responsible for curating and maintaining the team website to project a web presence and provide NASA with a location from which to download crucial technical documents. The primary systems the team is responsible for include the rocket avionics and telemetry unit, a robotic rover payload which collects and retains a soil sample, and the team website. Whether or not team objectives are met will be determined by the quality of the team's competition entry and performance in April 2019.
+
+\section{Current Progress}
+Project progress has developed at a reasonable pace this term. Avionics code refactoring and testing is in progress, a new GUI is being written by volunteers, and all the software necessary to start development has been secured. Unfortunately, the team hasn't procured the hardware for the 433 MHz band communication yet, but this comes down to funding and time constraints from the larger team that the CS team doesn't have a lot of leeway with. Robotic payload documentation and design choices have been semi-finalized and submitted to the electrical engineering team, who have been able to start working on control APIs for the rover motors and sensors, paving the way for the CS team to start integration and development within the next few weeks. The team's previous website has been tweaked and updated to serve as a temporary web presence until the new site is ready, and development on the new site by several team members has been started. Both capstone and NASA documentation have been completely relatively on time and are of reasonably good quality; we feel it satisfies the capacity of meeting course requirements well.\newline
+
+\noindent We are planning to spend a significant amount of winter break working on our systems. We would like to have a functional new website (in ReactJS) finished and in place by January 4th so NASA has a new place to download Critical Design Review (CDR) documentation. Payload programming will also begin during winter break once the electrical engineering team is reasonably far along with building the API necessary for the CS team to work with the rover. Avionics refactoring and feature implementation will be accelerated as time resources expand over the break. The next batch of NASA documentation - the aforementioned Critical Design Review - is due on January 4th, and we'll be working on having our sections written and completed in the next two to three weeks.
+
+
+
+
+
+
+\newpage
+\begin{landscape}
+
+\section{Retrospective}
+% Please add the following required packages to your document preamble:
+% \usepackage{longtable}
+% Note: It may be necessary to compile the document several times to get a multi-page table to line up properly
+\begin{longtable}{p{1cm}|p{7cm}|p{7cm}|l} % This is the distance of those boxes
+\multicolumn{1}{l|}{\textbf{Week}} & \textbf{Positives} & \textbf{Deltas} & \textbf{Actions (To-Do)} \\ \hline
+\endhead
+                        %this is the distance of the text in the box
+\textbf{3} & \begin{tabular}{p{6.5cm}} Spoke with group for the first USLI team meeting. Roles were established. Ryan was responsible for the Latex and website. Leif was responsible for the website and rover and Trey is responsible for the avionics portion.  \end{tabular} & \begin{tabular}{p{6.5cm}} Our future plans include meetings every week multiple times a week to keep a strong communication as well as familiarizing ourselves with the tools we have locked in knowing what we are doing. The website is of our primary concern at this moment.  \end{tabular} & \begin{tabular}{p{6.5cm}} Spend time learning how to use REACT and figure out what the website is going to look like from a design perspective. \end{tabular} \hline
+
+\textbf{4} & \begin{tabular}{p{6.5cm}}First CS Subteam meeting. Determined objectives, first whole team design review. Started volunteer project delegation. Partial avionics code review. \end{tabular} & \begin{tabular}{p{6.5cm}}Resource allocation shifted so CS team can help deal with editing LaTeX documents to be submitted to NASA - due in several weeks. Make progress on website code.\end{tabular} & \begin{tabular}{p{6.5cm}}Updating old website to be ready for document submission for NASA. Completing Preliminary Design Review (PDR) portions we're responsible for by 10/25. Meet with Owen to begin the development for site and plan out the websites organization \end{tabular} \hline
+
+\textbf{5} & \begin{tabular}{p{6.5cm}}PDR - Preliminary Design Report (NASA competition document). LaTeX support for the rest of the team, especially with images and tables.Finalized decision to use teensy 3.6 for the main micro controller. \end{tabular} & \begin{tabular}{p{6.5cm}}We will require deadlines for content submission for the next NASA document to ease the editing process.\end{tabular} & \begin{tabular}{p{6.5cm}}Preliminary avionics code refactor. Finalize and complete PDR for submission to NASA. Start assigning volunteer projects. \end{tabular} \hline
+
+\textbf{6} & \begin{tabular}{p{6.5cm}}Finished PDR document, slideshow, and flysheet. Website updates to make old site suitable for document retriever. Research on 433 MHz transceivers. Payload design decisions. \end{tabular} & \begin{tabular}{p{6.5cm}}Need to start on CDR earlier than planned. Also need to readjust resource allocation for course documentation - Ryan will probably be chief in composing documents from here.\end{tabular} & \begin{tabular}{p{6.5cm}}Avionics refactor and SmartRF experimentation. Site core functionality work in React.Research about OpenCV library\end{tabular} \hline
+
+\textbf{7} & \begin{tabular}{p{6.5cm}}Avionics refactor and testing (successful!). Assigned Python projects to volunteers. Leif got his hands on development hardware for the payload. Meeting with EE team to determine object recognition and detection methods. PDR presentation with NASA. \end{tabular} & \begin{tabular}{p{6.5cm}} Familiarize with OpenCV as new object detection method and begin development on the Beaglebone and Teensy. Make progress on Website so that we can meet production goal before CDR \end{tabular} & \begin{tabular}{p{6.5cm}} Look at code and fill out some pseudocode for main Teensy logic. Continue development of website. Further avionics refactor and functional decomposition. Get volunteer projects to self-sustaining point.\end{tabular} \hline
+
+\textbf{8} & \begin{tabular}{p{6.5cm}} OpenCV library loaded onto the Beaglebone. Messed around with the idea of adding TensorFlow libraries to implement machine learning for the rover - low priority, only required for a single function on the rover to initially move away from the rocket. Further ReactJS development and Avionics refactoring.  \end{tabular} & \begin{tabular}{p{6.5cm}} Get camera for CV in order to progress further. Start writing code for Teensy after obtaining microcontroller.  \end{tabular} & \begin{tabular}{p{6.5cm}} Contact the ECE team about the rover and Teensy chip to see when implementation can begin. Talk to Connor about the camera in order to get one in a reasonable time. Meeting with Squires to square away formal requirements and documentation. Finish critical capstone documents. \end{tabular} \hline
+
+\textbf{9} & \begin{tabular}{p{6.5cm}} State and class diagrams showing sensor and function for control created for rover. Ordered Teensy in the mail which should arrive in time to begin implementation soon. Functional decomposition of avionics ground station code for future simultaneous transmit and receive. Research on SmartRF. Started volunteers on ATU GUI project.  \end{tabular} & \begin{tabular}{p{6.5cm}} Still waiting on webcam to come in mail for CV. Talk to ECE to get a better idea of where their role stops and CS takes over to design the system. Divide work more evenly around the group.  \end{tabular} & \begin{tabular}{p{6.5cm}} Begun shifting webdev work to Ryan which he will soon lead. Push all work done and meet with him in order to update on future tasks. Meet with Squires and delineate requirements for development over winter break. \end{tabular} \hline
+
+\end{longtable}
+
+\end{landscape}
+
+\section{Conclusion}
+This document has summarized the progress made by the CS team for the NASA USLI competition throughout fall term. A week by week journal was recorded and progress on avionics, payload, and the website were explained in detail. Winter term will be a busy and hectic 10 weeks as it is a sprint to the finish line for the project. The team is eager to get started and perform the best we can in Huntsville in April.  
+
+\end{document}
